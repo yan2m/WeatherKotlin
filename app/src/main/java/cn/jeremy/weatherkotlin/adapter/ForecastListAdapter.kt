@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import cn.jeremy.weatherkotlin.R
 import cn.jeremy.weatherkotlin.domain.Domain
-import cn.jeremy.weatherkotlin.listener.OnItemClickListener
 import cn.jeremy.weatherkotlin.utils.ctx
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
@@ -16,7 +15,7 @@ import org.jetbrains.anko.find
 /**
  * Created by linjy on 2017/5/22.
  */
-class ForecastListAdapter(val weekForecast: Domain.ForecastList, val itemClick: OnItemClickListener) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(val weekForecast: Domain.ForecastList, val itemClick: (Domain.Forecast) -> Unit) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = weekForecast.size()
 
@@ -29,7 +28,7 @@ class ForecastListAdapter(val weekForecast: Domain.ForecastList, val itemClick: 
         holder.bindForecast(weekForecast[position])
     }
 
-    class ViewHolder(view: View, val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (Domain.Forecast) -> Unit) : RecyclerView.ViewHolder(view) {
         private val iconView: ImageView
         private val dateView: TextView
         private val descriptionView: TextView
